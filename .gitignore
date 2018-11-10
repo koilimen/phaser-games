@@ -2,3 +2,5 @@ node_modules/
 .idea/
 public/
 *.iml
+.directory
+package-lock.json
