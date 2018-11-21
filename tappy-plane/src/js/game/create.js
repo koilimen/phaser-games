@@ -7,7 +7,7 @@ export function create() {
     $scene.anims.create({
         key: 'plane',
         repeat: -1,
-        frameRate: 10,
+        frameRate: 24,
         frames: $scene.anims.generateFrameNames('sheet', {start: 1, end: 3, prefix: 'planeBlue', suffix: '.png'})
     });
     $scene.bg = $scene.add.tileSprite(0, 0, 800, 480, 'sheet', 'background.png').setOrigin(0);

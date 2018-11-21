@@ -4,3 +4,4 @@ public/
 *.iml
 .directory
 package-lock.json
+*-ignore/

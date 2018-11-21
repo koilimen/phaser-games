@@ -1,4 +1,5 @@
 import {GameScene} from "./game/gameScene";
+import {MenuScene} from "./menu/MenuScene";
 
 
 const config = {
@@ -17,7 +18,7 @@ const config = {
             debug: false
         }
     },
-    scene: [GameScene]
+    scene: [MenuScene, GameScene]
 };
 window.addEventListener("load", function (event) {
     console.log("All resources finished loading!");
