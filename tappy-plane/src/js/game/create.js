@@ -11,14 +11,25 @@ export function create() {
         frames: $scene.anims.generateFrameNames('sheet', {start: 1, end: 3, prefix: 'planeBlue', suffix: '.png'})
     });
     $scene.bg = $scene.add.tileSprite(0, 0, 800, 480, 'sheet', 'background.png').setOrigin(0);
+    let grounds = $scene.physics.add.staticGroup();
+    $scene.groundBottom = $scene.add.tileSprite(0, 409, 800, 71, 'sheet', 'groundDirt.png').setOrigin(0);
+    $scene.groundTop = $scene.add.tileSprite(0, 0, 800, 71, 'sheet', 'groundDirt.png').setOrigin(0);
+    grounds.add($scene.groundBottom);
+    grounds.add($scene.groundTop);
+    $scene.groundTop.body.setSize(800,71);
+    $scene.groundBottom.body.setSize(800,71);
+    $scene.groundTop.flipX = true;
+    $scene.groundTop.flipY = true;
     $scene.plane = $scene.physics.add.sprite(400, 300, 'sheet').play('plane');
-    const pauseText = this.add.text(16, 16, 'pause', {
-        fontSize: '32px',
-        fill: '#900',
-        fontFamily: 'kenvector future thin'
+    $scene.plane.setOrigin(1,0.5);
+    $scene.physics.add.overlap($scene.plane, grounds, () => {
+        console.log("Bang");
     });
-    pauseText.setInteractive(new Phaser.Geom.Rectangle(0, 0, pauseText.width, pauseText.height), Phaser.Geom.Rectangle.Contains);
-    pauseText.on('pointerdown', pause);
+    // $scene.infoText = $scene.add.text(16, 16, 'Velosity: '+$scene.plane.body._dy, {
+    //     fontSize: '22px',
+    //     fill: '#900',
+    //     fontFamily: 'kenvector future thin'
+    // });
     window.addEventListener('resize', resize);
 }
 
@@ -35,11 +46,3 @@ function resize() {
     }
 }
 
-function pause() {
-    isPaused = !isPaused;
-    if (isPaused) {
-        game.scene.resume('default')
-    } else {
-        game.scene.pause('default')
-    }
-}

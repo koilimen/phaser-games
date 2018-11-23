@@ -3,7 +3,6 @@ let game;
 export function create($scene) {
     game = $scene.game;
     $scene.add.image(0, 0, 'sheet', 'background.png').setOrigin(0);
-    $scene.add.image(0, 0, 'sheet', 'background.png').setOrigin(0);
     $scene.add.image(0, 409, 'sheet', 'groundDirt.png').setOrigin(0);
     $scene.add.image(600, 359, 'sheet', 'rock.png');
     let rockTop = $scene.add.image(0, 0, 'sheet', 'groundDirt.png');
