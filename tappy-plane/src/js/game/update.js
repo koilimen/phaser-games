@@ -1,9 +1,9 @@
-const speed = 3;
+
 
 export function update() {
     const $scene = this;
-    $scene.groundBottom.tilePositionX += speed;
-    $scene.groundTop.tilePositionX -= speed;
+    $scene.groundBottom.tilePositionX += $scene.speed;
+    $scene.groundTop.tilePositionX -= $scene.speed;
     $scene.input.on('pointerdown', (event) => {
         $scene.plane.setVelocityY(-250);
 

@@ -27,6 +27,7 @@ export function create($scene) {
         ]
     })
     ;
+
     $scene.add.sprite(410, 250, 'sheet').play('tapTicking');
     let tapLeft = $scene.add.image(480, 210, 'sheet', 'tapLeft.png');
     tapLeft.angle = -30;
