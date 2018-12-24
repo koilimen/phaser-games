@@ -1,8 +1,10 @@
-export function preload($scene){
+export function preload($scene) {
     preloader($scene);
-    $scene.load.atlasXML('sheet', '/assets/Spritesheet/sheet.png', '/assets/Spritesheet/sheet.xml');
-
-
+    const base = document.querySelector("base");
+    let baseHref = "";
+    if (base)
+        baseHref = base.getAttribute("href");
+    $scene.load.atlasXML('sheet', baseHref + '/assets/Spritesheet/sheet.png', baseHref + '/assets/Spritesheet/sheet.xml');
 }
 
 function preloader($scene) {

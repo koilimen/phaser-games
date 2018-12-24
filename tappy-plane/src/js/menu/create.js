@@ -3,12 +3,11 @@ let game;
 export function create($scene) {
     game = $scene.game;
     $scene.add.image(0, 0, 'sheet', 'background.png').setOrigin(0);
-    $scene.add.image(0, 409, 'sheet', 'groundDirt.png').setOrigin(0);
+    $scene.add.image(0, game.height - 71, 'sheet', 'groundDirt.png').setOrigin(0);
     $scene.add.image(600, 359, 'sheet', 'rock.png');
-    let rockTop = $scene.add.image(game.canvas.width, 71, 'sheet', 'groundDirt.png').setOrigin(0);
+    let rockTop = $scene.add.image(0, 0, 'sheet', 'groundDirt.png').setOrigin(0);
     rockTop.flipY = true;
     rockTop.flipX = true;
-    
     let plane1 = $scene.add.image(130, 200, 'sheet', 'planeBlue1.png');
     plane1.angle = -25;
     let plane2 = $scene.add.image(160, 290, 'sheet', 'planeRed2.png');
