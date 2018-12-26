@@ -50,24 +50,21 @@ export function create() {
     $scene.physics.add.overlap($scene.plane, grounds, () => {
         planeCrash($scene);
     });
-    $scene.rocks = [];
-    $scene.stars = [];
-    $scene.time.addEvent({
-        delay: 2000,
-        loop: true,
-        callback: () => {
-            const height = getRandomYPosition();
-            const rock1 = grounds.create(900, height, 'sheet', 'rock.png').setOrigin(0.5, 1);
-            const rock2 = grounds.create(900, height - 603, 'sheet', 'rockDown.png').setOrigin(0.5, 0);
-            $scene.rocks.push(rock1);
-            $scene.rocks.push(rock2);
-            $scene.stars.push($scene.add.image(855, height / 2 - 20, 'sheet', 'starGold.png'));
-
-        }
+    $scene.rocks = $scene.physics.add.staticGroup(); // create rocks pool
+    $scene.physics.add.overlap($scene.plane, $scene.rocks, () => {
+        planeCrash($scene);
     });
+    $scene.getRandomYPosition = getRandomYPosition;
+    $scene.stars = [];
+    for (let i = 0; i < 4; i++) {
+        const height = getRandomYPosition();
+        const x_position = 900 + (i + 1) * 400;
+        $scene.rocks.create(x_position, height, 'sheet', 'rock.png').setOrigin(0.5, 1);
+        $scene.rocks.create(x_position, height - 608, 'sheet', 'rockDown.png').setOrigin(0.5, 0);
+        $scene.stars.push($scene.add.image(850+(i + 1) * 400, height  - 300, 'sheet', 'starGold.png'));
+    }
     $scene.input.on('pointerdown', (event) => {
         $scene.plane.setVelocityY(-230);
-
     });
     $scene.score = 0;
     $scene.scoreTxt = $scene.add.text(10, 10, "Score: 0", textStyle);
@@ -78,8 +75,6 @@ function getRandomYPosition() {
     const max = min + 239 / 2;
     return Math.random() * (max - min) + min;
 }
-
-
 
 
 function planeCrash($scene) {
