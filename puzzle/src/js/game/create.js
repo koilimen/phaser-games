@@ -1,6 +1,5 @@
 export function create() {
     let fsp;
-    //todo перемешать части
     let x_offset = 0;
     let y_offset = 0;
     this.imagesPool = [];
@@ -36,7 +35,7 @@ export function create() {
                         console.log("Puzzle complete!");
                     } else {
                         console.log("I give you one more chance.");
-                    };
+                    }
                 } else {
                     fsp = partImage;
                     partImage.setTint(0xaaffaa);
